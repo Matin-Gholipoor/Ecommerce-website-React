@@ -1,31 +1,29 @@
-import { products } from "../data/products";
+// import { products } from "../data/products";
 import { centsToDollars } from "../utils/money";
 
-export function ProductContainer({ index }) {
-  index = Number(index);
-
+export function ProductContainer({ product }) {
   return (
     <>
       <div className="product-container">
         <div className="product-image-container">
           <img className="product-image"
-            src={products[index].image} />
+            src={product.image} />
         </div>
 
         <div className="product-name limit-text-to-2-lines">
-          {products[index].name}
+          {product.name}
         </div>
 
         <div className="product-rating-container">
           <img className="product-rating-stars"
-            src={`images/ratings/rating-${products[index].rating.stars * 10}.png`} />
+            src={`images/ratings/rating-${product.rating.stars * 10}.png`} />
           <div className="product-rating-count link-primary">
-            {products[index].rating.count}
+            {product.rating.count}
           </div>
         </div>
 
         <div className="product-price">
-          ${centsToDollars(products[index].priceCents)}
+          ${centsToDollars(product.priceCents)}
         </div>
 
         <div className="product-quantity-container">
