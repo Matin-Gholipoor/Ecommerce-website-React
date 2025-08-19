@@ -1,12 +1,20 @@
 import { centsToDollars } from '../utils/money'
 import { DeliveryOption } from './DeliveryOption';
+import dayjs from 'dayjs';
 
-export function CartItemContainer({ cartItem , deliveryOptions}) {
+export function CartItemContainer({ cartItem, deliveryOptions }) {
   return (
     <>
       <div className="cart-item-container">
         <div className="delivery-date">
-          Delivery date: Tuesday, June 21
+          Delivery date:
+          {
+            dayjs(
+              deliveryOptions.find((option) => {
+                return option.id === cartItem.deliveryOptionId;
+              }).estimatedDeliveryTimeMs
+            ).format('dddd, MMMM D')
+          }
         </div>
 
         <div className="cart-item-details-grid">
@@ -37,9 +45,9 @@ export function CartItemContainer({ cartItem , deliveryOptions}) {
             <div className="delivery-options-title">
               Choose a delivery option:
             </div>
-            {deliveryOptions.map((option)=>{
-              return <DeliveryOption key={option.id} option={option} />
-            }) }
+            {deliveryOptions.map((option) => {
+              return <DeliveryOption key={option.id} option={option} cartItem={cartItem} />
+            })}
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ import axios from 'axios';
 export function CheckoutPage({cart}) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   useEffect(() => {
-    axios.get('api/delivery-options').then((response) => {
+    axios.get('api/delivery-options?expand=estimatedDeliveryTime').then((response) => {
       setDeliveryOptions(response.data);
     });
   }, []);
