@@ -6,29 +6,29 @@ export function ProductContainer({ index }) {
 
   return (
     <>
-      <div class="product-container">
-        <div class="product-image-container">
-          <img class="product-image"
+      <div className="product-container">
+        <div className="product-image-container">
+          <img className="product-image"
             src={products[index].image} />
         </div>
 
-        <div class="product-name limit-text-to-2-lines">
+        <div className="product-name limit-text-to-2-lines">
           {products[index].name}
         </div>
 
-        <div class="product-rating-container">
-          <img class="product-rating-stars"
+        <div className="product-rating-container">
+          <img className="product-rating-stars"
             src={`images/ratings/rating-${products[index].rating.stars * 10}.png`} />
-          <div class="product-rating-count link-primary">
+          <div className="product-rating-count link-primary">
             {products[index].rating.count}
           </div>
         </div>
 
-        <div class="product-price">
+        <div className="product-price">
           ${centsToDollars(products[index].priceCents)}
         </div>
 
-        <div class="product-quantity-container">
+        <div className="product-quantity-container">
           <select>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -43,14 +43,14 @@ export function ProductContainer({ index }) {
           </select>
         </div>
 
-        <div class="product-spacer"></div>
+        <div className="product-spacer"></div>
 
-        <div class="added-to-cart">
+        <div className="added-to-cart">
           <img src="images/icons/checkmark.png" />
           Added
         </div>
 
-        <button class="add-to-cart-button button-primary">
+        <button className="add-to-cart-button button-primary">
           Add to Cart
         </button>
       </div>

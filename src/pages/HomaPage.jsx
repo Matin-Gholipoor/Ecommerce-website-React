@@ -10,8 +10,8 @@ export function HomePage() {
 
       <Header />
 
-      <div class="home-page">
-        <div class="products-grid">
+      <div className="home-page">
+        <div className="products-grid">
           {products.map((product, index) => {
             return <ProductContainer index={index} key={product.id} />
           })}
