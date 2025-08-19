@@ -2,8 +2,17 @@ import { Link } from 'react-router';
 import './CheckoutPage.css'
 import './CheckoutPage-header.css'
 import { CartItemContainer } from '../components/CartItemContainer';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export function CheckoutPage({cart}) {
+  const [deliveryOptions, setDeliveryOptions] = useState([]);
+  useEffect(() => {
+    axios.get('api/delivery-options').then((response) => {
+      setDeliveryOptions(response.data);
+    });
+  }, []);
+
   let cartQuantity = 0;
   cart.forEach((item) => {
     cartQuantity += item.quantity;
@@ -42,6 +51,7 @@ export function CheckoutPage({cart}) {
               return <CartItemContainer
                 key={item.productId}
                 cartItem={item}
+                deliveryOptions={deliveryOptions}
               />
             })}
           </div>
