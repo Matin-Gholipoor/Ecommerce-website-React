@@ -1,19 +1,9 @@
 import { Link } from 'react-router';
 import './CheckoutPage.css'
 import './CheckoutPage-header.css'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { CartItemContainer } from '../components/CartItemContainer';
 
-export function CheckoutPage() {
-  const [cart, setCart] = useState([]);
-
-  useEffect(() => {
-    axios.get('/api/cart-items?expand=product').then((response) => {
-      setCart(response.data);
-    });
-  }, []);
-
+export function CheckoutPage({cart}) {
   let cartQuantity = 0;
   cart.forEach((item) => {
     cartQuantity += item.quantity;
