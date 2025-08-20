@@ -28,7 +28,7 @@ function App() {
           element={<HomePage products={products} cart={cart} />}
         />
         <Route
-          path='Checkout'
+          path='checkout'
           element={<CheckoutPage cart={cart} />}
         />
         <Route

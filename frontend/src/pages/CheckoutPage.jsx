@@ -7,12 +7,8 @@ import axios from 'axios';
 import { centsToDollars } from '../utils/money';
 
 export function CheckoutPage({ cart }) {
-  const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState({});
   useEffect(() => {
-    axios.get('api/delivery-options?expand=estimatedDeliveryTime').then((response) => {
-      setDeliveryOptions(response.data);
-    });
     axios.get('/api/payment-summary').then((response) => {
       setPaymentSummary(response.data);
     });
@@ -56,7 +52,6 @@ export function CheckoutPage({ cart }) {
               return <CartItemContainer
                 key={item.productId}
                 cartItem={item}
-                deliveryOptions={deliveryOptions}
               />
             })}
           </div>

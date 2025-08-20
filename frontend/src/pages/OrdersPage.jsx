@@ -13,8 +13,6 @@ export function OrdersPage({ cart }) {
     });
   }, []);
 
-  console.log(orders);
-
   return (
     <>
       <title>Orders</title>

@@ -1,19 +1,30 @@
 import { centsToDollars } from '../utils/money'
 import { DeliveryOption } from './DeliveryOption';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import dayjs from 'dayjs';
 
-export function CartItemContainer({ cartItem, deliveryOptions }) {
+export function CartItemContainer({ cartItem }) {
+  const [deliveryOptions, setDeliveryOptions] = useState([]);
+  useEffect(() => {
+    axios.get('/api/delivery-options?expand=estimatedDeliveryTime').then((response) => {
+      setDeliveryOptions(response.data);
+    });
+  }, []);
+
+  const selectedDeliveryOption = deliveryOptions.find(
+    (option) => option.id === cartItem.deliveryOptionId
+  );
+
   return (
     <>
       <div className="cart-item-container">
         <div className="delivery-date">
           Delivery date:
           {
-            dayjs(
-              deliveryOptions.find((option) => {
-                return option.id === cartItem.deliveryOptionId;
-              }).estimatedDeliveryTimeMs
-            ).format('dddd, MMMM D')
+            selectedDeliveryOption
+              ? dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')
+              : '...loading'
           }
         </div>
 
